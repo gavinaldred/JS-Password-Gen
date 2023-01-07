@@ -91,17 +91,65 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
 
+  var length = parseInt(
+    prompt('Choose how many characters you would like your password to be, enter a number between 1 and 128')
+  );
+ if (isNaN(length) === true) {
+  alert('Please use numbers and not letters or charters to chooses the length');
+  return;
+ }
+
+ if (length < 8) {
+  alert('Your password needs to be at least 8 characters long');
+  return;
+ }
+
+ if (length > 128) {
+  alert('Your password can\t be longer that 128 characters')
+  return;
+ }
+
+ var addSpecialChars = confirm(
+  'click OK to use special charcters in your password'
+ );
+
+ var addNumbers = confirm(
+  'click ok to use numbers in your password'
+ );
+
+ var addLowerCase = confirm(
+  'click ok to use lowercase letters in your password'
+ );
+
+ var addUpperCase = confirm(
+  'click ok to use uppercase letters in your password'
+ );
+
+ if (addSpecialChars === false && addNumbers === false && addLowerCase === false && addUpperCase === false)
+ { 
+alert('you have to choose some characters!');
+return;
+ }
+
+ var userPasswordOptions = {
+  length: length,
+  addSpecialChars: addSpecialChars,
+  addNumbers: addNumbers,
+  addLowerCase: addLowerCase,
+  addUpperCase: addUpperCase
+ };
+
+ return userPasswordOptions;
+
 }
 
 // Function for getting a random element from an array
-function getRandom(arr) {
 
-}
+ 
+
 
 // Function to generate password with user input
-function generatePassword() {
 
-}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
@@ -115,4 +163,4 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
+generateBtn.addEventListener('click', writePassword); 
