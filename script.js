@@ -105,7 +105,7 @@ function getPasswordOptions() {
  }
 
  if (length > 128) {
-  alert('Your password can\t be longer that 128 characters')
+  alert('Your password can not be longer that 128 characters')
   return;
  }
 
@@ -143,9 +143,14 @@ return;
 
 }
 
-// Function for getting a random element from an array
+// Function for getting a random element from an array // found this on w3 schools - will be used later when pushing a random part of an array to users password
 
- 
+function getRandom(arr) {
+  var randIndex = Math.floor(Math.random() * arr.length);
+  var randElement = arr[randIndex];
+
+  return randElement;
+}
 
 
 // Function to generate password with user input
