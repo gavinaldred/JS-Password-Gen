@@ -91,47 +91,47 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
 
-  var length = parseInt(
+  var length = parseInt( // stores the users password length as an interger
     prompt('Choose how many characters you would like your password to be, enter a number between 1 and 128')
   );
- if (isNaN(length) === true) {
+ if (isNaN(length) === true) {// if the users has entered a value that is not a number, this will trigger
   alert('Please use numbers and not letters or charters to chooses the length');
   return;
  }
 
- if (length < 8) {
+ if (length < 8) { // checks if the minimum length password criteria is met
   alert('Your password needs to be at least 8 characters long');
   return;
  }
 
- if (length > 128) {
-  alert('Your password can not be longer that 128 characters')
+ if (length > 128) { // checks that the maximum password length criteria is not breached
+  alert('Your password can"t" be longer that 128 characters')
   return;
  }
 
- var addSpecialChars = confirm(
+ var addSpecialChars = confirm( // asks the user if they want special characters in their password and stores a boolean in the variable
   'click OK to use special charcters in your password'
  );
 
- var addNumbers = confirm(
+ var addNumbers = confirm( // asks the user if they want numbers in their password and stores a boolean in the variable
   'click ok to use numbers in your password'
  );
 
- var addLowerCase = confirm(
+ var addLowerCase = confirm( // asks the user if they want lower case characters in their password and stores a boolean in the variable
   'click ok to use lowercase letters in your password'
  );
 
- var addUpperCase = confirm(
+ var addUpperCase = confirm( // asks the user if they want upper case characters in their password and stores a boolean in the variable
   'click ok to use uppercase letters in your password'
  );
 
- if (addSpecialChars === false && addNumbers === false && addLowerCase === false && addUpperCase === false)
+ if (addSpecialChars === false && addNumbers === false && addLowerCase === false && addUpperCase === false) // if all the user declines all options, then user alerted
  { 
 alert('you have to choose some characters!');
 return;
  }
 
- var userPasswordOptions = {
+ var userPasswordOptions = { // object that stores the password options (true / false) from user input into key pairs, as well as the length 
   length: length,
   addSpecialChars: addSpecialChars,
   addNumbers: addNumbers,
