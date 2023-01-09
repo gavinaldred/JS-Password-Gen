@@ -125,7 +125,7 @@ function getPasswordOptions() {
   'click ok to use uppercase letters in your password'
  );
 
- if (addSpecialChars !== true && addNumbers !== true && addLowerCase !== true && addUpperCase !== true) // if all the user declines all options, then user alerted
+ if (addSpecialChars !== true && addNumbers !== true && addLowerCase !== true &&addUpperCase !== true ) // if all the user declines all options, then user alerted
  { 
 alert('you have to choose some characters!');
 return; // function ends
@@ -157,6 +157,48 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 
+// Function to generate password with user input
+function generatePassword() {
+  var possibleOptions = getPasswordOptions();
+  
+  var passwordResult = [];
+  
+  var possiblePasswordCharacters = [];
+  
+  var guaranteedPasswordCharacters = [];
+  
+  if (possibleOptions.addSpecialChars) {
+    possiblePasswordCharacters = possiblePasswordCharacters.concat(specialCharacters);
+    guaranteedPasswordCharacters.push(getRandom(specialCharacters));
+  }
+  
+  if (possibleOptions.addNumbers) {
+    possiblePasswordCharacters = possiblePasswordCharacters.concat(numericCharacters);
+    guaranteedPasswordCharacters.push(getRandom(numericCharacters));
+  }
+  
+  if (possibleOptions.addLowerCase) {
+    possiblePasswordCharacters = possiblePasswordCharacters.concat(lowerCasedCharacters);
+    guaranteedPasswordCharacters.push(getRandom(lowerCasedCharacters));
+  }
+  
+  if (possibleOptions.addUpperCase) {
+    possiblePasswordCharacters = possiblePasswordCharacters.concat(upperCasedCharacters);
+    guaranteedPasswordCharacters.push(getRandom(upperCasedCharacters));
+  }
+  
+  for (var i = 0; i < possibleOptions.length; i++) {
+    var possiblePasswordCharacters = getRandom(possiblePasswordCharacters);
+    passwordResult.push(possiblePasswordCharacters);
+  }
+  
+  for (var i = 0; i < guaranteedPasswordCharacters.length; i++) {
+    passwordResult[i] = guaranteedPasswordCharacters[i];
+  }
+  
+  return passwordResult.join('');
+  
+  }
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
@@ -171,3 +213,4 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword); 
+
