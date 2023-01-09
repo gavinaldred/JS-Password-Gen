@@ -88,25 +88,28 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+var length = '';
+
+
 // Function to prompt user for password options
 function getPasswordOptions() {
 
-  var length = parseInt( // stores the users password length as an interger
+  length = parseInt( // stores the users password length as an interger
     prompt('Choose how many characters you would like your password to be, enter a number between 10 and 64')
   );
  if (isNaN(length) === true) {// if the users has entered a value that is not a number, this will trigger
   alert('Please use numbers and not letters or charters to chooses the length');
-  return; // return ends the function
+  return length = 0; // return ends the function
  }
 
  if (length < 10) { // checks if the minimum length password criteria is met
   alert('Your password needs to be at least 10 characters long');
-  return;
+  return addNumbers = true;
  }
 
  if (length > 64) { // checks that the maximum password length criteria is not breached
-  alert('Your password can"t" be longer that 128 characters')
-  return;
+  alert('Your password can"t" be longer that 64 characters')
+  return length = 0;
  }
 
  var addSpecialChars = confirm( // asks the user if they want special characters in their password and stores a boolean in the variable
@@ -128,7 +131,7 @@ function getPasswordOptions() {
  if (addSpecialChars !== true && addNumbers !== true && addLowerCase !== true &&addUpperCase !== true ) // if all the user declines all options, then user alerted
  { 
 alert('you have to choose some characters!');
-return; // function ends
+return addNumbers = true; // function ends
  }
 
  var userPasswordOptions = { // object that stores the password options (true / false) from user input into key pairs, as well as the length from the parseINT
@@ -167,16 +170,16 @@ function generatePassword() {
   
   var guaranteedPasswordCharacters = []; // this ensures at least one of each chosen charater type is included
   
-  
+
   // Conditional statement that adds array of numeric characters into the above empty array of possible characters based on user input
   // Push new random number character to guaranteedCharacters
-  if (possibleOptions.addNumbers) {
+  if (length > 7 && length <65 && possibleOptions.addNumbers) {
     possiblePasswordCharacters = possiblePasswordCharacters.concat(numericCharacters);
     guaranteedPasswordCharacters.push(getRandom(numericCharacters));
   }
     // Conditional statement that adds array of special characters into the above empty array of possible characters based on user input
   // Push new random special character to guaranteedCharacters
-  if (possibleOptions.addSpecialChars) {
+  if (length > 7 && length <65 && possibleOptions.addSpecialChars) {
     possiblePasswordCharacters = possiblePasswordCharacters.concat(specialCharacters); 
     guaranteedPasswordCharacters.push(getRandom(specialCharacters));
   }
@@ -184,14 +187,14 @@ function generatePassword() {
     // Conditional statement that adds array of lowercase characters into the above empty array of possible characters based on user input
   // Push new random lower-cased character to guaranteedCharacters
 
-  if (possibleOptions.addLowerCase) {
+  if (length > 7 && length <65 && possibleOptions.addLowerCase) {
     possiblePasswordCharacters = possiblePasswordCharacters.concat(lowerCasedCharacters);
     guaranteedPasswordCharacters.push(getRandom(lowerCasedCharacters));
   }
   
     // Conditional statement that adds array of uppercase characters into the above empty array of possible characters based on user input
   // Push new random upper-cased character to guaranteedCharacters
-  if (possibleOptions.addUpperCase) {
+  if (length > 7 && length <65 && possibleOptions.addUpperCase) {
     possiblePasswordCharacters = possiblePasswordCharacters.concat(upperCasedCharacters);
     guaranteedPasswordCharacters.push(getRandom(upperCasedCharacters));
   }
@@ -202,8 +205,8 @@ function generatePassword() {
     passwordResult.push(possiblePasswordCharacter);
   }
   // Mix in at least one of each guaranteed character in the result
-  for (var i = 0; i < guaranteedPasswordCharacters.length; i++) {
-    passwordResult[i] = guaranteedPasswordCharacters[i];
+  for (var j = 0; i < guaranteedPasswordCharacters.length; j++) {
+    passwordResult[j] = guaranteedPasswordCharacters[j];
   }
     // Transform the result into a string and pass into writePassword
   return passwordResult.join('');
@@ -223,4 +226,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword); 
-
