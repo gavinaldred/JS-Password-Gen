@@ -92,19 +92,19 @@ var upperCasedCharacters = [
 function getPasswordOptions() {
 
   var length = parseInt( // stores the users password length as an interger
-    prompt('Choose how many characters you would like your password to be, enter a number between 1 and 128')
+    prompt('Choose how many characters you would like your password to be, enter a number between 10 and 64')
   );
  if (isNaN(length) === true) {// if the users has entered a value that is not a number, this will trigger
   alert('Please use numbers and not letters or charters to chooses the length');
+  return; // return ends the function
+ }
+
+ if (length < 10) { // checks if the minimum length password criteria is met
+  alert('Your password needs to be at least 10 characters long');
   return;
  }
 
- if (length < 8) { // checks if the minimum length password criteria is met
-  alert('Your password needs to be at least 8 characters long');
-  return;
- }
-
- if (length > 128) { // checks that the maximum password length criteria is not breached
+ if (length > 64) { // checks that the maximum password length criteria is not breached
   alert('Your password can"t" be longer that 128 characters')
   return;
  }
@@ -125,13 +125,13 @@ function getPasswordOptions() {
   'click ok to use uppercase letters in your password'
  );
 
- if (addSpecialChars === false && addNumbers === false && addLowerCase === false && addUpperCase === false) // if all the user declines all options, then user alerted
+ if (addSpecialChars !== true && addNumbers !== true && addLowerCase !== true && addUpperCase !== true) // if all the user declines all options, then user alerted
  { 
 alert('you have to choose some characters!');
-return;
+return; // function ends
  }
 
- var userPasswordOptions = { // object that stores the password options (true / false) from user input into key pairs, as well as the length 
+ var userPasswordOptions = { // object that stores the password options (true / false) from user input into key pairs, as well as the length from the parseINT
   length: length,
   addSpecialChars: addSpecialChars,
   addNumbers: addNumbers,
@@ -143,10 +143,12 @@ return;
 
 }
 
-// Function for getting a random element from an array // found this on w3 schools - will be used later when pushing a random part of an array to users password
+// Function for getting a random element from an array // found this on https://www.programiz.com/javascript/examples/get-random-item - will be used later when pushing a random part of an array to users password
 
 function getRandom(arr) {
+    // get random index value
   var randIndex = Math.floor(Math.random() * arr.length);
+   // get random item
   var randElement = arr[randIndex];
 
   return randElement;
