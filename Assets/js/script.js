@@ -95,20 +95,20 @@ var length = '';
 function getPasswordOptions() {
 
   length = parseInt( // stores the users password length as an interger
-    prompt('Choose how many characters you would like your password to be, enter a number between 10 and 64')
+    prompt('Choose how many characters you would like your password to be? Please, enter a number between 10 and 64')
   );
  if (isNaN(length) === true) {// if the users has entered a value that is not a number, this will trigger
-  alert('Please use numbers and not letters or charters to chooses the length');
+  alert('Please use numbers and not letters or charters to choose the length');
   return length = 0; // return ends the function
  }
 
  if (length < 10) { // checks if the minimum length password criteria is met
   alert('Your password needs to be at least 10 characters long');
-  return addNumbers = true;
+  return addNumbers = !true;
  }
 
  if (length > 64) { // checks that the maximum password length criteria is not breached
-  alert('Your password can"t" be longer that 64 characters')
+  alert('Your password can be not longer that 64 characters')
   return length = 0;
  }
 
@@ -117,20 +117,20 @@ function getPasswordOptions() {
  );
 
  var addNumbers = confirm( // asks the user if they want numbers in their password and stores a boolean in the variable
-  'click ok to use numbers in your password'
+  'click OK to use numbers in your password'
  );
 
  var addLowerCase = confirm( // asks the user if they want lower case characters in their password and stores a boolean in the variable
-  'click ok to use lowercase letters in your password'
+  'click OK to use lowercase letters in your password'
  );
 
  var addUpperCase = confirm( // asks the user if they want upper case characters in their password and stores a boolean in the variable
-  'click ok to use uppercase letters in your password'
+  'click OK to use uppercase letters in your password'
  );
 
  if (addSpecialChars !== true && addNumbers !== true && addLowerCase !== true &&addUpperCase !== true ) // if all the user declines all options, then user alerted
  { 
-alert('you have to choose some characters!');
+alert('you have to choose some characters if you want a password!');
 return addNumbers = true; // function ends
  }
 
@@ -168,7 +168,7 @@ function generatePassword() {
   
   var possiblePasswordCharacters = []; // Array to store types of characters to include in password, driven by user choice
   
-  var guaranteedPasswordCharacters = []; // this ensures at least one of each chosen charater type is included
+  var guaranteedPasswordCharacters = []; // this ensures at least one of each chosen charater type is included in the final password
   
 
   // Conditional statement that adds array of numeric characters into the above empty array of possible characters based on user input
@@ -204,7 +204,7 @@ function generatePassword() {
     var possiblePasswordCharacter = getRandom(possiblePasswordCharacters);
     passwordResult.push(possiblePasswordCharacter);
   }
-  // Mix in at least one of each guaranteed character in the result
+  // Mix in at least one of each guaranteed character in the result using a loop
   for (var j = 0; i < guaranteedPasswordCharacters.length; j++) {
     passwordResult[j] = guaranteedPasswordCharacters[j];
   }
