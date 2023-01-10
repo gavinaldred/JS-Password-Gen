@@ -29,7 +29,7 @@ View the completed project below on the deployed link. A screenshot has also bee
 
  
   
-![My Portfolio](./Assets/images/js_password.jpg)
+![My Portfolio](./Assets/images/js_password_gen.jpg)
    
 
 [Link to the finished deployed website](https://gavinaldred.github.io/JS-Password-Gen/)
